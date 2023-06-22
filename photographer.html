@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+      href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <title>Fisheye - photographe </title>
+  </head>
+  <body>
+    <header>
+      <img src="assets/images/logo.png" class="logo" />
+    </header>
+    <main id="main">
+      <div class="photograph-header">
+        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      </div>
+      <section class="filtres">
+        <h3>Filtres</h3>
+        <button class="btn-trier">trier par ordre croissant</button>
+      </section>
+      <div class="photograph-main"></div>      
+
+
+    <div id="lightbox">
+    
+      <button id="previous" class="lightbox-button">
+        <img src="/assets/icons/arrow.svg" alt="previous"/>
+      </button>
+      
+      <img id="lightbox-picture" src="" alt=""/>
+      
+      <button id="next" class="lightbox-button">
+        <img src="/assets/icons/arrow.svg" alt="next"/>
+      </button>
+
+      <button id="close-lightbox" class="lightbox-button" onclick="closeLightbox()">
+        <img src="/assets/icons/close.svg" alt="X"/>
+      </button>
+      
+    </div>
+  
+    <article data-index="2" data-bidule="coucou"></article>
+      
+    </main>
+    <div id="contact_modal">
+			<div class="modal">
+				<header>
+          <h2>Contactez-moi</h2>
+          <img id="contact_modal_close-button" src="assets/icons/close.svg" onclick="closeModal()" />
+        </header>
+        <form name="formulaire" id="formulaire" action="photographer.html" method="get" >
+					<div>
+						<label>Prénom</label>
+            <input  class="text-control" type="text"  id="Prenom"  name="Prenom"   /><br>
+            <span class="hidden" id="PrenomNameError" ></span>
+					</div>
+          <div>
+						<label>nom</label>
+            <input  class="text-control" type="text"  id="Nom"  name="Nom"   /><br>
+            <span class="hidden" id="NomNameError" ></span>
+					</div>
+          <div>
+						<label>email</label>
+            <input  class="text-control"  type="text" id="email"  name="email"  /><br>
+            <span class="hidden" id="emailError" ></span>
+					</div>
+          <div>
+						<label>Message</label>
+						<input />
+					</div>
+          <button class="contact_button">Envoyer</button>
+				</form>
+			</div>
+		</div>
+    <script src="/scripts/pages/photographer.js"></script>
+    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/templates/photographer.js"></script>
+    <script src="/scripts/templates/medias.js"></script>
+    
+  </body>
+</html>
