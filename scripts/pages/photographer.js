@@ -1,8 +1,11 @@
 //Mettre le code JavaScript lié à la page photographer.html
-
+let arrayMediasLikes ;
 let arrayMedias = [];
 let currentPictureIndex;
 let currentLikes;
+let nextCurrentLikes;
+let newLikes;
+let totalLikes;
 
 async function getJSON() {
     const res = await fetch('./data/photographers.json')
@@ -12,9 +15,10 @@ async function getJSON() {
 
 async function getPhotographer(id) {
     id = parseInt(id)
-    const { photographers } = await getJSON()
+    const { photographers } = await getJSON() 
     const photographer = photographers.find(data => data.id === id)
     //console.log(photographer)
+    
    
 
     const photographerHeader = document.querySelector(".photograph-header");
@@ -30,14 +34,29 @@ async function getMediasPhotographer(id){
     const { media } = await getJSON()
    // console.log(media)
     arrayMedias = media.filter(data => data.photographerId === id)
+    console.log(arrayMedias)
+  
     
-
     const photographermain = document.querySelector(".photograph-main");
 
-    arrayMedias.forEach((media,index) => {
-        //
-        const mediaGalery = mediaTemplate(media, index);
+    arrayMedias.forEach((media) => {
+    const mediaGalery = mediaTemplate(media);
+   // console.log(mediaGalery)
+    currentLikes = mediaGalery.likes;
+    console.log(currentLikes)
+    totalLikes = arrayMedias.reduce((acc, item) => acc + item.likes, 0)
+});
 
+
+// totalLikes = currentLikes 
+ // console.log(totalLikes)
+  
+  console.log(totalLikes)
+
+    arrayMedias.forEach((media,index) => {
+        
+        const mediaGalery = mediaTemplate(media, index);
+      
         if(media.hasOwnProperty("image")){
             const userCardDOM = mediaGalery.getImage();
             photographermain.appendChild(userCardDOM);
@@ -49,16 +68,28 @@ async function getMediasPhotographer(id){
   
 }
 
- function handleClickLikes(){
 
-   
 
+ function handleClickLikes(media){ 
+  //  const likesElement = document.querySelectorAll(`Likes`);
+   // console.log(likesElement)
+const mediaGalery = mediaTemplate(media);
+console.log(mediaGalery)
+
+  currentLikes =mediaGalery.likes;
+ console.log(currentLikes)
+
+ nextCurrentLikes = currentLikes + 1
+console.log(nextCurrentLikes)
+
+//likesElement.appendChild(nextCurrentLikes)
 
 }
 
+
  function showLightbox(id) { //2 -1 / +1
     currentPictureIndex = id;
-    console.log(currentPictureIndex);
+ //   console.log(currentPictureIndex);
     // Récupérer la lightbox dans le DOM
     const lightboxDOM = document.getElementById('lightbox')
     
@@ -70,9 +101,27 @@ async function getMediasPhotographer(id){
     const image = arrayMedias[id].image
     const imagePath = `/assets/SamplePhotos/${image}` // '/assets/SamplePhotos/Fashion_Yellow_Beach.jpg'
 
+    const title = arrayMedias[id].title
+   // const titlePath = `/media/${title}` 
+
+    // Reconstituer le chemin vers l'image à partir du JSON
+    const video = arrayMedias[id].video
+    const VideoPath = `/assets/SamplePhotos/${video}`
+ //   let Video = document.getElementById('video');
+
+   
     // Remplacer la valeur de src à partir du chemin reconstitué
-    lightboxMediaDOM.setAttribute("src", imagePath)
+    // lightboxMediaDOM.setAttribute("src", imagePath)
+    // lightboxMediaDOM.setAttribute("src", VideoPath)
+    // lightboxMediaDOM.setAttribute( imagePath)
     
+    if(id.hasOwnProperty("image")){
+        lightboxMediaDOM.setAttribute("src", imagePath)
+        lightboxMediaDOM.textContent(title)
+    }else if(id.hasOwnProperty("video")){
+        lightboxMediaDOM.setAttribute("src", VideoPath)
+        lightboxMediaDOM.setAttribute(title)
+    } 
     // 
     lightboxDOM.style.display = "flex";
    photographermain.style.display = "none";
@@ -85,7 +134,7 @@ async function getMediasPhotographer(id){
 const nextButton = document.getElementById('next');
 function handleShowNext() {
     const lightboxMediaDOM = document.getElementById('lightbox-picture');
-    console.log(currentPictureIndex)
+   // console.log(currentPictureIndex)
     currentPictureIndex += 1
     
     if (currentPictureIndex > arrayMedias.length - 1) {
@@ -110,7 +159,7 @@ nextButton.addEventListener('click', handleShowNext)
 const prevButton = document.getElementById('previous');
 function handleShowPrev() {
     const lightboxMediaDOM = document.getElementById('lightbox-picture');
-    console.log(currentPictureIndex)
+    //console.log(currentPictureIndex)
     currentPictureIndex -= 1
     
     if (currentPictureIndex <0) {
@@ -140,7 +189,7 @@ async function init() {
 const id = urlSearchParams.get("id")
     await getPhotographer(id)
    await getMediasPhotographer(id)
-   await showLikes(id)
+ 
     //console.log(getMediasPhotographer)
     
 }

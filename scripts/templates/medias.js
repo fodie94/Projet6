@@ -10,30 +10,34 @@ function mediaTemplate(data, index) {
         const img = document.createElement( 'img' )
         img.setAttribute("src", picture)
         const bas_article = document.createElement( 'div' )
+        bas_article.classList.add('bas_article')
         const name_article = document.createElement( 'div' )
         const h2 = document.createElement( 'h2' )
         h2.textContent = title
-        
-        const h3 = document.createElement( 'h3' )
-        h3.textContent = likes  
+        h2.classList.add('txt')        
+        const Likes = document.createElement( 'h3' )
+        Likes.textContent = likes  
         
         const svg_article = document.createElement( 'div' )
+        svg_article.classList.add('i-heart')
         const i = document.createElement( 'i' )
-        i.classList.add('fa-regular','fa-heart')
-        
-       // Element.classList.add('')
+        i.classList.add('fa-solid','fa-heart')
 
         article.appendChild(img)
         name_article.appendChild(h2)
-        svg_article.appendChild(h3)
+        svg_article.appendChild(Likes)
         svg_article.appendChild(i)
         bas_article.appendChild(name_article)
         bas_article.appendChild(svg_article)
         article.appendChild(bas_article)
 
-       
         img.addEventListener('click', (elem) => showLightbox(index))
-        i.addEventListener('click', (elem) => handleClickLikes())
+        i.addEventListener('click', (elem) => handleClickLikes(data))
+
+
+
+        
+        
         return (article)
     }   
    
@@ -44,21 +48,23 @@ function mediaTemplate(data, index) {
     article2.setAttribute('data-index',index)
     const vdo = document.createElement( 'video' )
     vdo.setAttribute("src", pathVideo)
+    vdo.setAttribute('controls', true);
     const bas_article = document.createElement( 'div' )
     const h2 = document.createElement( 'h2' )
     h2.textContent = title
-    const h3 = document.createElement( 'h3' )
-    h3.textContent = likes  
+    const Likes = document.createElement( 'h3' )
+    Likes.textContent = likes  
     article2.appendChild(vdo)
     bas_article.appendChild(h2)
-    bas_article.appendChild(h3)
+    bas_article.appendChild(Likes)
     article2.appendChild(bas_article)
     vdo.addEventListener('click', (elem) => showLightbox(index))
 
     return (article2)
     }
+ 
+    
 
 
-
-    return {likes,title,picture,getImage,getVideo}
+    return {likes,title,picture,getImage,getVideo,totalLikes}
 }
