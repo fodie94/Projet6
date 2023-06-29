@@ -6,6 +6,8 @@ let currentLikes;
 let nextCurrentLikes;
 let newLikes;
 let totalLikes;
+let totalLikestest;
+let likesElement;
 
 async function getJSON() {
     const res = await fetch('./data/photographers.json')
@@ -47,7 +49,6 @@ async function getMediasPhotographer(id){
     totalLikes = arrayMedias.reduce((acc, item) => acc + item.likes, 0)
 });
 
-
 // totalLikes = currentLikes 
  // console.log(totalLikes)
   
@@ -82,9 +83,12 @@ console.log(mediaGalery)
  nextCurrentLikes = currentLikes + 1
 console.log(nextCurrentLikes)
 
-//likesElement.appendChild(nextCurrentLikes)
 
+totalLikestest = arrayMedias.reduce((acc, item) => acc + item.likes, 0)
+console.log(totalLikestest)
 }
+
+console.log(likesElement)
 
 
  function showLightbox(id) { //2 -1 / +1
@@ -120,7 +124,8 @@ console.log(nextCurrentLikes)
         lightboxMediaDOM.textContent(title)
     }else if(id.hasOwnProperty("video")){
         lightboxMediaDOM.setAttribute("src", VideoPath)
-        lightboxMediaDOM.setAttribute(title)
+        lightboxMediaDOM.setAttribute('controls', true)
+       // vdo.setAttribute('controls', true);
     } 
     // 
     lightboxDOM.style.display = "flex";

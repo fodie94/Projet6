@@ -8,7 +8,11 @@ body{
     max-width: 1440px;
     margin: 0;
 }
-
+header img{
+    width: 200px;
+    height: 50px;
+    padding: 43px 0 0 100px;
+}
 main{
     width: 100%;
 }
@@ -38,7 +42,15 @@ main{
     border-radius: 5px;
     cursor: pointer;
 }
+.filtres h3{
+    font-family: DM Sans;
+font-size: 18px;
+font-weight: 700;
+line-height: 23px;
+letter-spacing: 0em;
+text-align: left;
 
+}
 #contact_modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -103,7 +115,7 @@ form input {
 .button{
     display: flex;
     justify-content: center;
-    transform: translateY(100%);
+    transform: translateY(150px);
 }
 .photograph-header {
     background-color: #fafafa;
@@ -121,18 +133,18 @@ form input {
   } */
 
   .photograph-main{
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 100px;
+    row-gap: 30px;
     justify-content: center;
-    padding: 0 100px;
-   
   }
 
  
   .photograph-main article{
 
-    width: 94%;
-    height: 61%;
+    width: 25%;
+    height: 300px;
 
   }
 
@@ -154,11 +166,12 @@ border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 50px;
 }
 
 .id-photo img{
-    width: 263px;
-    height: 277px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
 }
 
@@ -203,11 +216,14 @@ color: #525252;
 .bas_article{
     display: flex;
     justify-content: space-between;
+    padding-top: 10px;
+    align-items: center;
     
 color: #911C1C;
 }
 .i-heart{
     display: flex;
+    gap : 10px; 
 }
 
 .txt{
