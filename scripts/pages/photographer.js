@@ -131,7 +131,7 @@ function showLightbox(id) { //2 -1 / +1
    const image = arrayMedias[id].image
    const imagePath = `/assets/SamplePhotos/${image}` // '/assets/SamplePhotos/Fashion_Yellow_Beach.jpg'
 
-   const title = arrayMedias[id].title
+   const title = arrayMedias[id].title  
    console.log(title)
    // const titlePath = `/media/${title}` 
 
