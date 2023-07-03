@@ -32,7 +32,7 @@ function mediaTemplate(data, index) {
         article.appendChild(bas_article)
 
         img.addEventListener('click', (elem) => showLightbox(index))
-        i.addEventListener('click', (elem) => handleClickLikes(data))
+        i.addEventListener('click', (event) => handleClickLikes(event, data))
 
         return (article)
     }   
@@ -53,7 +53,7 @@ function mediaTemplate(data, index) {
         const h2 = document.createElement( 'h2' )
         h2.textContent = title
         h2.classList.add('txt')        
-        const Likes = document.createElement( 'h3' )
+        let Likes = document.createElement( 'h3' )
         Likes.textContent = likes
     
     const svg_article = document.createElement( 'div' )
@@ -69,13 +69,10 @@ function mediaTemplate(data, index) {
     bas_article.appendChild(svg_article)
     article.appendChild(bas_article)
     vdo.addEventListener('click', (elem) => showLightbox(index))
-    i.addEventListener('click', (elem) => handleClickLikes(data))
+    i.addEventListener('click', (event) => handleClickLikes(event,data))
 
     return (article)
     }
  
-    
-
-
     return {likes,title,picture,getImage,getVideo,totalLikes}
 }

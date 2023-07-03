@@ -51,12 +51,25 @@ function photographerTemplate(data) {
                content.appendChild(h2);
                content.appendChild(h3);
                content.appendChild(h4);
-              // content.appendChild(h5);
+               content.appendChild(h5);
                article2.appendChild(content);
                article2.appendChild(img);
            
                
                return (article2);
     }
-    return { name, picture, getUserCardDOM, getHeaderPhotographer }
+
+    function getPrixPhotographer() {      
+       
+        const span = document.createElement( 'span' );
+        span.classList.add('prixPhoto')
+              
+                const prix = document.createElement( 'prix' );
+                prix.textContent = price;              
+                
+                span.appendChild(prix);
+             
+                return (span);
+     }
+    return { name, picture, getUserCardDOM, getHeaderPhotographer,getPrixPhotographer }
 }
