@@ -154,7 +154,7 @@ function showLightbox(id) { //2 -1 / +1
    //     lightboxDOM.setAttribute('controls', true)
    //    // vdo.setAttribute('controls', true);
    // } 
-   lightboxDOM.style.display = "grid";
+   lightboxDOM.style.display = "flex";
    photographermain.style.display = "none";
 }
 
@@ -165,6 +165,7 @@ const nextButton = document.getElementById('next');
 
 function handleShowNext() {
    const lightboxMediaDOM = document.getElementById('lightbox-picture');
+   const lightboxNameDOM = document.getElementById('lightbox-title"');
    // console.log(currentPictureIndex)
    currentPictureIndex += 1
 
@@ -175,10 +176,15 @@ function handleShowNext() {
       const image = arrayMedias[currentPictureIndex].image
       const imagePath = `/assets/SamplePhotos/${image}`
       lightboxMediaDOM.setAttribute("src", imagePath)
+      const title = arrayMedias[currentPictureIndex].title
+      console.log(title)
+      lightboxNameDOM.innerText= title;
    } else if (arrayMedias[currentPictureIndex].hasOwnProperty('video')) {
       const video = arrayMedias[currentPictureIndex].video
       const VideoPath = `/assets/SamplePhotos/${video}`
       lightboxMediaDOM.setAttribute("src", VideoPath)
+      const title = arrayMedias[currentPictureIndex].title
+      lightboxNameDOM.innerText= title;
    }
 
    /*
@@ -196,6 +202,7 @@ const prevButton = document.getElementById('previous');
 
 function handleShowPrev() {
    const lightboxMediaDOM = document.getElementById('lightbox-picture');
+   const lightboxNameDOM = document.getElementById('lightbox-title"');
    //console.log(currentPictureIndex)
    currentPictureIndex -= 1
 
@@ -206,10 +213,15 @@ function handleShowPrev() {
       const image = arrayMedias[currentPictureIndex].image
       const imagePath = `/assets/SamplePhotos/${image}`
       lightboxMediaDOM.setAttribute("src", imagePath)
+      const title = arrayMedias[currentPictureIndex].title
+      lightboxNameDOM.innerText= title;
+
    } else if (arrayMedias[currentPictureIndex].hasOwnProperty('video')) {
       const video = arrayMedias[currentPictureIndex].video
       const VideoPath = `/assets/SamplePhotos/${video}`
       lightboxMediaDOM.setAttribute("src", VideoPath)
+      const title = arrayMedias[currentPictureIndex].title
+      lightboxNameDOM.innerText= title;
    }
 
 }
