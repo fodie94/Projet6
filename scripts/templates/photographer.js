@@ -33,10 +33,10 @@ function photographerTemplate(data) {
 
     function getHeaderPhotographer() {      
        
-       const article2 = document.createElement( 'article' );
-       article2.classList.add('id-photo')
-               const img = document.createElement( 'img' );
-               img.setAttribute("src", picture);
+       const article = document.createElement( 'article' );
+    //    article2.classList.add('id-photo')
+    //            const img = document.createElement( 'img' );
+    //            img.setAttribute("src", picture);
                const content = document.createElement('div')
                content.classList.add('id-photo-content')
                const h2 = document.createElement( 'h2' );
@@ -45,19 +45,32 @@ function photographerTemplate(data) {
                h3.textContent = city;
                const h4 = document.createElement( 'h4' );
                h4.textContent = tagline;
-               const h5 = document.createElement( 'h5' );
-               h5.textContent = price;              
+            //    const h5 = document.createElement( 'h5' );
+            //    h5.textContent = price;              
                
                content.appendChild(h2);
                content.appendChild(h3);
                content.appendChild(h4);
-               content.appendChild(h5);
-               article2.appendChild(content);
-               article2.appendChild(img);
+              // content.appendChild(h5);
+               article.appendChild(content);
+              // article2.appendChild(img);
            
                
-               return (article2);
+               return (article);
     }
+
+    function getHeaderPhotographer2() {      
+       
+        const article = document.createElement( 'article' );
+        article.classList.add('id-photo')
+                const img = document.createElement( 'img' );
+                img.setAttribute("src", picture);
+               
+               article.appendChild(img);
+            
+                
+                return (article);
+     }
 
     function getPrixPhotographer() {      
        
@@ -71,5 +84,5 @@ function photographerTemplate(data) {
              
                 return (span);
      }
-    return { name, picture, getUserCardDOM, getHeaderPhotographer,getPrixPhotographer }
+    return { name, picture, getUserCardDOM, getHeaderPhotographer,getHeaderPhotographer2,getPrixPhotographer }
 }

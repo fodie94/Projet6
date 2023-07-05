@@ -1,14 +1,17 @@
 //Mettre le code JavaScript lié à la page photographer.html
 let arrayMediasLikes;
 let arrayMedias = [];
+let arrayMedias2 = [];
+let mediaGalery ;
 let currentPictureIndex;
-let currentLikes;
+let currentLikes= [];
 let nextCurrentLikes;
 let newLikes;
 let totalLikes;
 let totalLikestest;
 let likesElement;
-let i;
+let piecesOrdonnees;
+let Name;
 
 async function getJSON() {
    const res = await fetch('./data/photographers.json')
@@ -32,6 +35,25 @@ async function getPhotographer(id) {
    photographerHeader.appendChild(headerPhotographer);
 
 }
+
+
+async function getPhotographer2(id) {
+   id = parseInt(id)
+   const {
+      photographers
+   } = await getJSON()
+   const photographer = photographers.find(data => data.id === id)
+   //console.log(photographer)
+
+
+   const photographerHeader = document.querySelector(".photograph-header");
+
+   const mediaGalery = photographerTemplate(photographer);
+   const headerPhotographer2 = mediaGalery.getHeaderPhotographer2();
+   photographerHeader.appendChild(headerPhotographer2);
+
+}
+
 
 async function getPrixPhotographers(id) {
     id = parseInt(id)
@@ -57,7 +79,7 @@ async function getMediasPhotographer(id) {
    } = await getJSON()
    // console.log(media)
    arrayMedias = media.filter(data => data.photographerId === id)
-   console.log(arrayMedias)
+   //console.log(arrayMedias)
 
 
    const photographermain = document.querySelector(".photograph-main");
@@ -65,23 +87,49 @@ async function getMediasPhotographer(id) {
 
    arrayMedias.forEach((media) => {
       const mediaGalery = mediaTemplate(media);
-      // console.log(mediaGalery)
-      currentLikes = mediaGalery.likes;
+      currentLikes = mediaGalery.likes
+      Name = mediaGalery.title;
       console.log(currentLikes)
+      console.log(Name)
+   
       totalLikes = arrayMedias.reduce((acc, item) => acc + item.likes, 0)
       photographLikes.innerText = totalLikes;
-
+     
    });
+   console.log(totalLikes) 
+ 
+  const boutontPopularite = document.querySelector(".btn-trier1")
+  boutontPopularite.addEventListener("click", function(){
+const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1)
+  console.log(trier)
+  })
+       
+  const boutontDate = document.querySelector(".btn-trier2")
+  boutontDate.addEventListener("click", function(){
+ const trier = arrayMedias.sort((a, b) => a.date > b.date ? 1 : -1)
+  console.log(trier)
+  })
+      
+  const boutontTitre = document.querySelector(".btn-trier3")
+  boutontTitre.addEventListener("click", function(){
+  const trier =  arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1)
+  console.log(trier)
+  })
+   
+   
 
-   // totalLikes = currentLikes 
-   // console.log(totalLikes)
 
-   console.log(totalLikes)
+   arrayMedias.forEach((media,index) => {
+
+      const mediaGalery = mediaTemplate(media, index);
+      Name = mediaGalery.title;
+    //  console.log(Name)
+   });
+  
 
    arrayMedias.forEach((media, index) => {
 
       const mediaGalery = mediaTemplate(media, index);
-
       if (media.hasOwnProperty("image")) {
          const userCardDOM = mediaGalery.getImage();
          photographermain.appendChild(userCardDOM);
@@ -131,7 +179,7 @@ function showLightbox(id) { //2 -1 / +1
    const image = arrayMedias[id].image
    const imagePath = `/assets/SamplePhotos/${image}` // '/assets/SamplePhotos/Fashion_Yellow_Beach.jpg'
 
-   const title = arrayMedias[id].title  
+   const title = arrayMedias[id].title
    console.log(title)
    // const titlePath = `/media/${title}` 
 
@@ -178,13 +226,13 @@ function handleShowNext() {
       lightboxMediaDOM.setAttribute("src", imagePath)
       const title = arrayMedias[currentPictureIndex].title
       console.log(title)
-      lightboxNameDOM.innerText= title;
+     // lightboxNameDOM.innerText= title;
    } else if (arrayMedias[currentPictureIndex].hasOwnProperty('video')) {
       const video = arrayMedias[currentPictureIndex].video
       const VideoPath = `/assets/SamplePhotos/${video}`
       lightboxMediaDOM.setAttribute("src", VideoPath)
       const title = arrayMedias[currentPictureIndex].title
-      lightboxNameDOM.innerText= title;
+    //  lightboxNameDOM.innerText= title;
    }
 
    /*
@@ -235,6 +283,7 @@ async function init() {
    const urlSearchParams = new URLSearchParams(window.location.search)
    const id = urlSearchParams.get("id")
    await getPhotographer(id)
+   await getPhotographer2(id)
    await getMediasPhotographer(id)
    await getPrixPhotographers(id)
 
