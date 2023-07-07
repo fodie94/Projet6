@@ -45,7 +45,6 @@ function mediaTemplate(data, index) {
 
     const vdo = document.createElement( 'video' )
     vdo.setAttribute("src", pathVideo)
-    vdo.setAttribute('controls', true);
 
    const bas_article = document.createElement( 'div' )
         bas_article.classList.add('bas_article')

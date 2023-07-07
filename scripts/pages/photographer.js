@@ -100,19 +100,25 @@ async function getMediasPhotographer(id) {
  
   const boutontPopularite = document.querySelector(".btn-trier1")
   boutontPopularite.addEventListener("click", function(){
+   photographermain.innerHTML=""
 const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1)
+photographermain.append(trier)
   console.log(trier)
   })
        
   const boutontDate = document.querySelector(".btn-trier2")
   boutontDate.addEventListener("click", function(){
+   photographermain.innerHTML=""
  const trier = arrayMedias.sort((a, b) => a.date > b.date ? 1 : -1)
+ photographermain.append(trier)
   console.log(trier)
   })
       
   const boutontTitre = document.querySelector(".btn-trier3")
   boutontTitre.addEventListener("click", function(){
+   photographermain.innerHTML=""
   const trier =  arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1)
+  photographermain.append(trier)
   console.log(trier)
   })
    
@@ -133,7 +139,8 @@ const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1)
       if (media.hasOwnProperty("image")) {
          const userCardDOM = mediaGalery.getImage();
          photographermain.appendChild(userCardDOM);
-      } else if (media.hasOwnProperty("video")) {
+      } else 
+      if (media.hasOwnProperty("video")) {
          const userCardDOM = mediaGalery.getVideo();
          photographermain.appendChild(userCardDOM);
       }
@@ -143,23 +150,23 @@ const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1)
 
 
 function handleClickLikes(event, media) {
+   // Vérifier si l'image a déjà été aimée
+   if (media.isLiked) {
+      return; // Sortir de la fonction si l'image a déjà été aimée
+   }
 
-   media.likes = media.likes + 1
+// Augmenter le nombre de likes et mettre isLiked à true
+   media.likes = media.likes + 1;
+   media.isLiked = true;
 
-   const heartIcon = event.currentTarget
+// Mise à jour de l'interface utilisateur
+   const heartIcon = event.currentTarget;
+   const numberLikes = heartIcon.parentNode.querySelector('h3');
+   numberLikes.innerText = media.likes;
 
-   const numberLikes = heartIcon.parentNode.querySelector('h3')
-
-   numberLikes.innerText = media.likes
-
-   const photographLikes = document.querySelector(".photograph-Likes");
-
-   totalLikestest = arrayMedias.reduce((acc, item) => acc + item.likes, 0)
-   console.log(totalLikestest)
-
+const photographLikes = document.querySelector(".photograph-Likes");
+   totalLikestest = arrayMedias.reduce((acc, item) => acc + item.likes, 0);
    photographLikes.innerText = totalLikestest;
- 
-
 }
 
 
@@ -168,7 +175,7 @@ function showLightbox(id) { //2 -1 / +1
    //   console.log(currentPictureIndex);
    // Récupérer la lightbox dans le DOM
    const lightboxDOM = document.getElementById('lightbox')
-   const lightboxMediaDOM = document.getElementById('lightbox-picture')
+   const lightboxContent = document.getElementById('lightbox-content')
    const lightboxNameDOM = document.getElementById('lightbox-title')
 
    // Récupérer l'image dans la lightbox
@@ -187,21 +194,24 @@ function showLightbox(id) { //2 -1 / +1
    const video = arrayMedias[id].video
    const VideoPath = `/assets/SamplePhotos/${video}`
 
-   lightboxMediaDOM.setAttribute("src", imagePath)
-  // lightboxMediaDOM.setAttribute("src", VideoPath)
-   lightboxNameDOM.innerText= title;
-
-   // if(id.hasOwnProperty("image")){
-   //  // const lightboxDOM = document.createElement('img')
-   //  // lightboxDOM.setAttribute("src", imagePath)
-   //   lightboxMediaDOM.setAttribute("src", imagePath)
-   //     //lightboxDOMlightboxMediaDOM.setAttribute(title)
-   // }else if(id.hasOwnProperty("video")){
-   //     const lightboxDOM = document.createElement('video')
-   //     lightboxDOM.setAttribute("src", VideoPath)
-   //     lightboxDOM.setAttribute('controls', true)
-   //    // vdo.setAttribute('controls', true);
-   // } 
+//  lightboxMediaDOM.setAttribute("src", imagePath)
+ // lightboxMediaDOM.setAttribute("src", VideoPath)
+  //lightboxNameDOM.innerText= title;
+lightboxContent.innerHTML=""
+   if(arrayMedias[id].hasOwnProperty("image")){
+     const lightboxImage = document.createElement('img')
+     lightboxImage.setAttribute("src", imagePath)     
+     lightboxContent.prepend(lightboxImage)  
+     lightboxNameDOM.innerText= title;
+   }
+   else if(arrayMedias[id].hasOwnProperty("video")){
+       const lightboxVideo = document.createElement('video')
+       lightboxVideo.setAttribute("src", VideoPath)
+       lightboxVideo.setAttribute('controls', true)
+       lightboxContent.prepend(lightboxVideo)
+       lightboxNameDOM.innerText= title;     
+   } 
+   console.log(id)
    lightboxDOM.style.display = "flex";
    photographermain.style.display = "none";
 }
@@ -212,9 +222,11 @@ function showLightbox(id) { //2 -1 / +1
 const nextButton = document.getElementById('next');
 
 function handleShowNext() {
-   const lightboxMediaDOM = document.getElementById('lightbox-picture');
-   const lightboxNameDOM = document.getElementById('lightbox-title"');
+  
+   const lightboxContent = document.getElementById('lightbox-content')
+   const lightboxNameDOM = document.getElementById('lightbox-title');
    // console.log(currentPictureIndex)
+   lightboxContent.innerHTML=""
    currentPictureIndex += 1
 
    if (currentPictureIndex > arrayMedias.length - 1) {
@@ -223,16 +235,22 @@ function handleShowNext() {
    if (arrayMedias[currentPictureIndex].hasOwnProperty('image')) {
       const image = arrayMedias[currentPictureIndex].image
       const imagePath = `/assets/SamplePhotos/${image}`
-      lightboxMediaDOM.setAttribute("src", imagePath)
+      const lightboxImage = document.createElement('img')
+      lightboxImage.setAttribute("src", imagePath)     
+      lightboxContent.prepend(lightboxImage)  
       const title = arrayMedias[currentPictureIndex].title
+      lightboxNameDOM.innerText= title;
       console.log(title)
      // lightboxNameDOM.innerText= title;
    } else if (arrayMedias[currentPictureIndex].hasOwnProperty('video')) {
       const video = arrayMedias[currentPictureIndex].video
       const VideoPath = `/assets/SamplePhotos/${video}`
-      lightboxMediaDOM.setAttribute("src", VideoPath)
+      const lightboxVideo = document.createElement('video')
+       lightboxVideo.setAttribute("src", VideoPath)
+       lightboxVideo.setAttribute('controls', true)
+       lightboxContent.prepend(lightboxVideo)
       const title = arrayMedias[currentPictureIndex].title
-    //  lightboxNameDOM.innerText= title;
+      lightboxNameDOM.innerText= title;
    }
 
    /*
@@ -249,25 +267,31 @@ nextButton.addEventListener('click', handleShowNext)
 const prevButton = document.getElementById('previous');
 
 function handleShowPrev() {
-   const lightboxMediaDOM = document.getElementById('lightbox-picture');
-   const lightboxNameDOM = document.getElementById('lightbox-title"');
+   const lightboxContent = document.getElementById('lightbox-content')
+   const lightboxNameDOM = document.getElementById('lightbox-title');
    //console.log(currentPictureIndex)
+   lightboxContent.innerHTML=""
    currentPictureIndex -= 1
 
    if (currentPictureIndex < 0) {
-      currentPictureIndex = arrayMedias.length
+      currentPictureIndex = arrayMedias.length - 1
    }
    if (arrayMedias[currentPictureIndex].hasOwnProperty('image')) {
       const image = arrayMedias[currentPictureIndex].image
       const imagePath = `/assets/SamplePhotos/${image}`
-      lightboxMediaDOM.setAttribute("src", imagePath)
+      const lightboxImage = document.createElement('img')
+      lightboxImage.setAttribute("src", imagePath)     
+      lightboxContent.prepend(lightboxImage)  
       const title = arrayMedias[currentPictureIndex].title
       lightboxNameDOM.innerText= title;
 
    } else if (arrayMedias[currentPictureIndex].hasOwnProperty('video')) {
       const video = arrayMedias[currentPictureIndex].video
       const VideoPath = `/assets/SamplePhotos/${video}`
-      lightboxMediaDOM.setAttribute("src", VideoPath)
+      const lightboxVideo = document.createElement('video')
+       lightboxVideo.setAttribute("src", VideoPath)
+       lightboxVideo.setAttribute('controls', true)
+       lightboxContent.prepend(lightboxVideo)
       const title = arrayMedias[currentPictureIndex].title
       lightboxNameDOM.innerText= title;
    }
