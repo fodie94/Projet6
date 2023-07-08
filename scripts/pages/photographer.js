@@ -128,52 +128,87 @@ async function getMediasPhotographer(id) {
 //   photographermain.append(trier)
 //   console.log(trier)
 //   })
+
+
    
+// const triSelect = document.getElementById("tri-select");
+// triSelect.addEventListener("change", function() {
+//   const value = triSelect.value;
+
+//   if (value === "popularite") {
+//     photographermain.innerHTML = "";
+//     const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1);
+//     photographermain.append(trier);
+//     console.log(trier);
+//   } else if (value === "date") {
+//     photographermain.innerHTML = "";
+//     const trier = arrayMedias.sort((a, b) => a.date > b.date ? 1 : -1);
+//     photographermain.append(trier);
+//     console.log(trier);
+//   } else if (value === "titre") {
+//     photographermain.innerHTML = "";
+//     const trier =  arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1);
+//     photographermain.append(trier);
+//     console.log(trier);
+//   }
+// });
+
+
+
+arrayMedias.forEach((media, index) => {
+
+   const mediaGalery = mediaTemplate(media, index);
+   if (media.hasOwnProperty("image")) {
+      const userCardDOM = mediaGalery.getImage();
+      photographermain.appendChild(userCardDOM);
+   } else 
+   if (media.hasOwnProperty("video")) {
+      const userCardDOM = mediaGalery.getVideo();
+      photographermain.appendChild(userCardDOM);
+   }
+});
+
+}
+
+
 const triSelect = document.getElementById("tri-select");
 triSelect.addEventListener("change", function() {
   const value = triSelect.value;
 
+  let trier;
   if (value === "popularite") {
-    photographermain.innerHTML = "";
-    const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1);
-    photographermain.append(trier);
-    console.log(trier);
+    trier = arrayMedias.sort((a, b) => a.likes > b.likes ? -1 : 1);
   } else if (value === "date") {
-    photographermain.innerHTML = "";
-    const trier = arrayMedias.sort((a, b) => a.date > b.date ? 1 : -1);
-    photographermain.append(trier);
-    console.log(trier);
+    trier = arrayMedias.sort((a, b) => a.date > b.date ? -1 : 1);
   } else if (value === "titre") {
-    photographermain.innerHTML = "";
-    const trier =  arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1);
-    photographermain.append(trier);
-    console.log(trier);
+    trier = arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1);
   }
+
+  const photographermain = document.querySelector(".photograph-main");
+  photographermain.innerHTML = "";
+  trier.forEach((media, index) => {
+  
+    const mediaGalery = mediaTemplate(media, index);
+    if (media.hasOwnProperty("image")) {
+      const userCardDOM = mediaGalery.getImage();
+      photographermain.appendChild(userCardDOM);
+    } else if (media.hasOwnProperty("video")) {
+      const userCardDOM = mediaGalery.getVideo();
+      photographermain.appendChild(userCardDOM);
+    }
+  });
 });
 
 
-   arrayMedias.forEach((media,index) => {
 
-      const mediaGalery = mediaTemplate(media, index);
-      Name = mediaGalery.title;
-    //  console.log(Name)
-   });
+   // arrayMedias.forEach((media,index) => {
+
+   //    const mediaGalery = mediaTemplate(media, index);
+   //    Name = mediaGalery.title;
+   //  //  console.log(Name)
+   // });
   
 
-   arrayMedias.forEach((media, index) => {
-
-      const mediaGalery = mediaTemplate(media, index);
-      if (media.hasOwnProperty("image")) {
-         const userCardDOM = mediaGalery.getImage();
-         photographermain.appendChild(userCardDOM);
-      } else 
-      if (media.hasOwnProperty("video")) {
-         const userCardDOM = mediaGalery.getVideo();
-         photographermain.appendChild(userCardDOM);
-      }
-   });
-
-}
 
 
 function handleClickLikes(event, media) {
