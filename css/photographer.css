@@ -356,3 +356,23 @@ color: #901C1C;
     font-weight: 500;
     transform: translateY(6px);
 } 
+
+/* select */
+
+.trie{
+	display: flex;
+}
+.tri-select-txt{
+	font-family: DM Sans;
+font-size: 18px;
+font-weight: 700;
+line-height: 23px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+#tri-select {
+	padding: 5px;
+	font-size: 16px;
+	border-radius: 5px;
+  }

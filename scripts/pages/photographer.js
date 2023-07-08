@@ -5,7 +5,8 @@ let arrayMedias2 = [];
 let mediaGalery ;
 let currentPictureIndex;
 let currentLikes= [];
-let nextCurrentLikes;
+let nextCurrentLikes;  
+
 let newLikes;
 let totalLikes;
 let totalLikestest;
@@ -97,32 +98,58 @@ async function getMediasPhotographer(id) {
      
    });
    console.log(totalLikes) 
+
+   // const select = document.getElementById("my-select");
+   // select.addEventListener("change", function() {
+   //   const selectedOption = this.options[this.selectedIndex];
+   //   console.log(selectedOption.value);
+   // });
  
-  const boutontPopularite = document.querySelector(".btn-trier1")
-  boutontPopularite.addEventListener("click", function(){
-   photographermain.innerHTML=""
-const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1)
-photographermain.append(trier)
-  console.log(trier)
-  })
+//   const boutontPopularite = document.querySelector(".btn-trier1")
+//   boutontPopularite.addEventListener("click", function(){
+//    photographermain.innerHTML=""
+// const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1)
+// photographermain.append(trier)
+//   console.log(trier)
+//   })
        
-  const boutontDate = document.querySelector(".btn-trier2")
-  boutontDate.addEventListener("click", function(){
-   photographermain.innerHTML=""
- const trier = arrayMedias.sort((a, b) => a.date > b.date ? 1 : -1)
- photographermain.append(trier)
-  console.log(trier)
-  })
+//   const boutontDate = document.querySelector(".btn-trier2")
+//   boutontDate.addEventListener("click", function(){
+//    photographermain.innerHTML=""
+//  const trier = arrayMedias.sort((a, b) => a.date > b.date ? 1 : -1)
+//  photographermain.append(trier)
+//   console.log(trier)
+//   })
       
-  const boutontTitre = document.querySelector(".btn-trier3")
-  boutontTitre.addEventListener("click", function(){
-   photographermain.innerHTML=""
-  const trier =  arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1)
-  photographermain.append(trier)
-  console.log(trier)
-  })
+//   const boutontTitre = document.querySelector(".btn-trier3")
+//   boutontTitre.addEventListener("click", function(){
+//    photographermain.innerHTML=""
+//   const trier =  arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1)
+//   photographermain.append(trier)
+//   console.log(trier)
+//   })
    
-   
+const triSelect = document.getElementById("tri-select");
+triSelect.addEventListener("change", function() {
+  const value = triSelect.value;
+
+  if (value === "popularite") {
+    photographermain.innerHTML = "";
+    const trier = arrayMedias.sort((a, b) => a.likes > b.likes ? 1 : -1);
+    photographermain.append(trier);
+    console.log(trier);
+  } else if (value === "date") {
+    photographermain.innerHTML = "";
+    const trier = arrayMedias.sort((a, b) => a.date > b.date ? 1 : -1);
+    photographermain.append(trier);
+    console.log(trier);
+  } else if (value === "titre") {
+    photographermain.innerHTML = "";
+    const trier =  arrayMedias.sort((a, b) => a.title > b.title ? 1 : -1);
+    photographermain.append(trier);
+    console.log(trier);
+  }
+});
 
 
    arrayMedias.forEach((media,index) => {
