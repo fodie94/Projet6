@@ -2,6 +2,7 @@
 
 body {
     font-family: "DM Sans", sans-serif;
+    max-width: 1440px;
     margin: 0;
 }
 
@@ -19,7 +20,7 @@ h1 {
     margin-right: 100px;
 }
 
-.logo {
+header img , img .logo {
     height: 50px;
     margin-left: 100px;
 }
@@ -69,6 +70,7 @@ font-style: normal;
 font-weight: 400;
 font-size: 13px;
 line-height: 17px;
+gap: 10px;
 /* identical to box height */
 
 text-align: center;
@@ -104,4 +106,9 @@ color: #901C1C;
 }
 a{
      color: transparent;
+}
+
+.villePays{
+    display: flex;
+    gap: 5px;
 }

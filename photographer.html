@@ -11,95 +11,91 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo2" alt="Fisheye Home page" aria-label="Fisheye Home page" />
     </header>
     <main id="main">
      
       <div class="photograph-header">
         <div class="button">
-          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+          <button id="contact_button" aria-labelledby="Contactez-moi">Contactez-moi</button>
         </div>
          </div>
-      <!-- <section class="filtres">
-        <h3>Trier par</h3>
-        <button class="btn-trier1">Popularité</button>
-        <button class="btn-trier2">Date</button>
-        <button class="btn-trier3">Titre</button>
-      </section> -->
   
       <div class="trie">
         <div class="tri-select-txt">Trie par</div>
-        <select id="tri-select">
-          <option value="popularite">Popularité</option>
-          <option value="date">Date</option>
-          <option value="titre">Titre</option>
+        <select id="tri-select" aria-haspopup="select"  aria-expanded="false">
+          <option value="popularite"  role="option" aria-labelledby="Order by Popularity" >Popularité</option>
+          <option value="date"  role="option" aria-labelledby="Order by date">Date</option>
+          <option value="titre"  role="option" aria-labelledby="Order by title">Titre</option>
         </select>
       </div>
 
 
 
       <div class="photograph-main"></div>
-      <div class="photograph-Likes"></div>      
+      <div class="photograph-Likes"  aria-label="likes and price"></div>      
 
 
 
-    <div id="lightbox" >
-      <div id="lightbox-content"> </div>
-     <div id="lightbox-title"></div>
+    <div id="lightbox" aria-label="image closeup view"  role="button" aria-haspopup="listbox"  aria-expanded="false" >
+      <div id="lightbox-content"></div>
+      <div id="lightbox-title"></div>
+    
     
       <button id="previous" class="lightbox-button">
-        <img src="/assets/icons/arrow.svg" alt="previous"/>
-      </button>
-      
+        <img src="/assets/icons/arrow.svg" alt="Previous image"/>
+      </button>      
      
       
       <button id="next" class="lightbox-button">
-        <img src="/assets/icons/arrow.svg" alt="next"/>
+        <img src="/assets/icons/arrow.svg" alt="Next image"/>
       </button>
 
-      <button id="close-lightbox" class="lightbox-button" onclick="closeLightbox()">
-        <img src="/assets/icons/close.svg" alt="X"/>
+      <button id="close-lightbox" class="lightbox-button" >
+        <img src="/assets/icons/close.svg" alt="Close dialog"/>
       </button>
       
     </div>
-  
-    <article data-index="2" data-bidule="coucou"></article>
       
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal"  role="dialog" aria-expanded="false">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img id="contact_modal_close-button" src="assets/icons/close.svg" onclick="closeModal()" />
+          <div class="part1">
+            <h1>Contactez-moi</h1>
+            <div class="modal-name"></div>
+          </div>          
+         
         </header>
         <form name="formulaire" id="formulaire" action="photographer.html" method="get" >
 					<div>
 						<label>Prénom</label>
-            <input  class="text-control" type="text"  id="Prenom"  name="Prenom"   /><br>
+            <input  class="text-control" type="text"  id="Prenom"  name="Prenom" aria-required=true aria-labelledby="First name" /><br>
             <span class="hidden" id="PrenomNameError" ></span>
 					</div>
           <div>
 						<label>nom</label>
-            <input  class="text-control" type="text"  id="Nom"  name="Nom"   /><br>
+            <input  class="text-control" type="text"  id="Nom"  name="Nom"  aria-required=true aria-labelledby="Last name"  /><br>
             <span class="hidden" id="NomNameError" ></span>
 					</div>
           <div>
 						<label>email</label>
-            <input  class="text-control"  type="text" id="email"  name="email"  /><br>
+            <input  class="text-control"  type="text" id="email"  name="email" aria-required=true aria-labelledby="Email" /><br>
             <span class="hidden" id="emailError" ></span>
 					</div>
           <div>
 						<label>Message</label>
-						<input />
+						<input type="text" id="Message" aria-required=true aria-labelledby="Your message" />
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button id="contact_button" role="button" aria-labelledby="Send" >Envoyer</button>
 				</form>
+        <img id="contact_modal_close-button" src="assets/icons/close.svg" role="button" aria-labelledby="Close Contact form" />
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/templates/photographer.js"></script>
-    <script src="/scripts/templates/medias.js"></script>
+    <script src="/scripts/pages/photographer.js" type="module"></script>
+    <script src="/scripts/utils/contactForm.js" type="module"></script>
+    <script src="/scripts/templates/photographer.js" type="module"></script>
+    <script src="/scripts/templates/medias.js" type="module"></script>
     
   </body>
 </html>

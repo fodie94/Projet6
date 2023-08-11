@@ -1,20 +1,46 @@
-function displayModal() {
+const modalOpen = document.getElementById("contact_button");
+
+
+modalOpen.addEventListener('click',displayModal)
+function displayModal() {  
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
 }
 
+const modalClose =  document.getElementById("contact_modal_close-button");
+modalClose.addEventListener('click',closeModal)
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
 
 
+// const modalContact = document.getElementById("contact_button");
+// const modalClose =  document.getElementById("contact_modal_close-button");
+const lightboxModal = document.getElementById("lightbox");
+const closeLightboxModal = document.getElementById("close-lightbox");
+const photographermain = document.querySelector(".photograph-main");
+
+// modalContact.addEventListener('click',displayModal)
+// function displayModal() {
+// 	modalContact.style.display = "block";
+// }
+
+// closeModalContact.addEventListener('click',closeModal)
+// function closeModal() {
+//     modalContact.style.display = "none";
+// }
+
+
+
+closeLightboxModal.addEventListener('click',closeLightbox)
 function closeLightbox() {
-    const lightboxModal = document.getElementById("lightbox");
     lightboxModal.style.display = "none"
-   const photographermain = document.querySelector(".photograph-main");
     photographermain.style.display = "grid";
 }
+
+
+
 
 
 /*
