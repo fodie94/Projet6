@@ -1,5 +1,6 @@
-function photographerTemplate(data) {
-    const { name, portrait, id, city, tagline, price } = data;
+
+export function photographerTemplate(data) {
+    const {name, portrait, id, city, tagline, price,country} = data;
 
     const picture = `assets/photographers/${portrait}`;
 
@@ -8,52 +9,78 @@ function photographerTemplate(data) {
         link.href=`photographer.html?id=${id}`;
        
        const article = document.createElement( 'article' );
+
                const img = document.createElement( 'img' );
-               img.setAttribute("src", picture);
-               const h2 = document.createElement( 'h2' );
-               h2.textContent = name;
-               h2.classList.add('name-article')
-               const h3 = document.createElement( 'h3' );
-               h3.textContent = city;
-               h3.classList.add('city-article')
-               const h4 = document.createElement( 'h4' );
-               h4.textContent = tagline;
-               h4.classList.add('tagline-article')
-               const h5 = document.createElement( 'h5' );
-               h5.textContent = price;
-               h5.classList.add('price-article')
+               img.setAttribute("src",picture);
+               img.setAttribute("alt",name);
+
+               const names = document.createElement( 'h2' );
+               names.textContent = name;
+               names.classList.add('name-article')
+
+               const ville = document.createElement( 'h3' );
+               ville.textContent = city +",";
+               ville.classList.add('city-article')
+
+               const pays= document.createElement( 'h3' );
+               pays.textContent = country;
+               pays.classList.add('city-article')
+
+               const villePays = document.createElement( 'div' );
+               villePays.classList.add('villePays')
+               villePays.appendChild(ville)
+               villePays.appendChild(pays)
+
+               const taglines = document.createElement( 'h4' );
+               taglines.textContent = tagline;
+               taglines.classList.add('tagline-article')
+
+               const prix = document.createElement( 'h5' );
+               prix.textContent = price;
+               prix.classList.add('price-article')
+
                article.appendChild(img);
-               article.appendChild(h2);
-               article.appendChild(h3);
-               article.appendChild(h4);
-               article.appendChild(h5);
+               article.appendChild(names);
+               article.appendChild(villePays);
+               article.appendChild(taglines);
+               article.appendChild(prix);
                link.appendChild(article);
+               
                return (link);
                 }
 
     function getHeaderPhotographer() {      
        
        const article = document.createElement( 'article' );
-    //    article2.classList.add('id-photo')
-    //            const img = document.createElement( 'img' );
-    //            img.setAttribute("src", picture);
+
                const content = document.createElement('div')
                content.classList.add('id-photo-content')
-               const h2 = document.createElement( 'h2' );
-               h2.textContent = name;
-               const h3 = document.createElement( 'h3' );
-               h3.textContent = city;
-               const h4 = document.createElement( 'h4' );
-               h4.textContent = tagline;
-            //    const h5 = document.createElement( 'h5' );
-            //    h5.textContent = price;              
+
+               const names = document.createElement( 'h2' );
+               names.textContent = name;
+
+               const ville = document.createElement( 'h3' );
+               ville.textContent = city +",";
+               ville.classList.add('city-article')
+
+               const pays= document.createElement( 'h3' );
+               pays.textContent = country;
+               pays.classList.add('city-article')
+
+               const villePays = document.createElement( 'div' );
+               villePays.classList.add('villePays')
+               villePays.appendChild(ville)
+               villePays.appendChild(pays)
+
+               const taglines = document.createElement( 'h4' );
+               taglines.textContent = tagline;
+          
                
-               content.appendChild(h2);
-               content.appendChild(h3);
-               content.appendChild(h4);
-              // content.appendChild(h5);
+               content.appendChild(names);
+               content.appendChild(villePays);
+               content.appendChild(taglines);              
                article.appendChild(content);
-              // article2.appendChild(img);
+              
            
                
                return (article);
@@ -65,6 +92,7 @@ function photographerTemplate(data) {
         article.classList.add('id-photo')
                 const img = document.createElement( 'img' );
                 img.setAttribute("src", picture);
+                img.setAttribute("alt",name)
                
                article.appendChild(img);
             
@@ -78,11 +106,26 @@ function photographerTemplate(data) {
         span.classList.add('prixPhoto')
               
                 const prix = document.createElement( 'prix' );
-                prix.textContent = price;              
+                prix.textContent = price +"€/Jour"; 
+                prix.setAttribute("alt",price)         
                 
                 span.appendChild(prix);
              
                 return (span);
      }
-    return { name, picture, getUserCardDOM, getHeaderPhotographer,getHeaderPhotographer2,getPrixPhotographer }
+
+     function getNameModal() {      
+       
+        const span = document.createElement( 'span' );
+        span.classList.add('NameModal')
+              
+                const name = document.createElement( 'name' );
+                name.textContent = name;              
+                
+                span.appendChild(name);
+             
+                return (span);
+     }
+    return {name, picture, getUserCardDOM, getHeaderPhotographer,getHeaderPhotographer2,getPrixPhotographer,getNameModal}
 }
+  
