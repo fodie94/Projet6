@@ -1,101 +1,86 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-      href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo2" alt="Fisheye Home page" aria-label="Fisheye Home page" />
-    </header>
-    <main id="main">
-     
-      <div class="photograph-header">
-        <div class="button">
-          <button id="contact_button" aria-labelledby="Contactez-moi">Contactez-moi</button>
-        </div>
-         </div>
-  
-      <div class="trie">
-        <div class="tri-select-txt">Trie par</div>
-        <select id="tri-select" aria-haspopup="select"  aria-expanded="false">
-          <option value="popularite"  role="option" aria-labelledby="Order by Popularity" >Popularité</option>
-          <option value="date"  role="option" aria-labelledby="Order by date">Date</option>
-          <option value="titre"  role="option" aria-labelledby="Order by title">Titre</option>
-        </select>
-      </div>
-
-
-
-      <div class="photograph-main"></div>
-      <div class="photograph-Likes"  aria-label="likes and price"></div>      
-
-
-
-    <div id="lightbox" aria-label="image closeup view"  role="button" aria-haspopup="listbox"  aria-expanded="false" >
-      <div id="lightbox-content"></div>
-      <div id="lightbox-title"></div>
-    
-    
-      <button id="previous" class="lightbox-button">
-        <img src="/assets/icons/arrow.svg" alt="Previous image"/>
-      </button>      
-     
-      
-      <button id="next" class="lightbox-button">
-        <img src="/assets/icons/arrow.svg" alt="Next image"/>
-      </button>
-
-      <button id="close-lightbox" class="lightbox-button" >
-        <img src="/assets/icons/close.svg" alt="Close dialog"/>
-      </button>
-      
-    </div>
-      
-    </main>
-    <div id="contact_modal"  role="dialog" aria-expanded="false">
+	<head>
+		<link href="css/photographer.css" rel="stylesheet" type="text/css" />
+		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="assets/favicon.png">
+		<link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css"
+			href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+		<title>Fisheye - photographe </title>
+	</head>
+	<body>
+		<header>
+			<a href="index.html">
+			<img src="assets/images/logo.png" class="logo2" alt="Fisheye Home page"  />
+			</a>
+		</header>
+		<main id="main">
+			<div class="photograph-header">
+				<div class="button">
+					<button id="contact_button" aria-label="Contactez-moi">Contactez-moi</button>
+				</div>
+			</div>
+			<div class="trie">
+				<div class="tri-select-txt">Trie par</div>
+				<select id="tri-select" aria-haspopup="select"  aria-expanded="false">
+					<option value="popularite"  role="option" aria-label="Order by Popularity" >Popularité</option>
+					<option value="date"  role="option" aria-label="Order by date">Date</option>
+					<option value="titre"  role="option" aria-label="Order by title">Titre</option>
+				</select>
+			</div>
+			<div class="photograph-main"></div>
+			<div class="photograph-Likes"  aria-label="likes"></div>
+			<div id="lightbox" aria-label="image closeup view"  role="button" aria-haspopup="listbox"  aria-hidden="false" >
+				<div id="lightbox-content"></div>
+				<div id="lightbox-title"></div>
+				<button id="previous" class="lightbox-button">
+				<img src="/assets/icons/arrow.svg" alt="Previous image"/>
+				</button>      
+				<button id="next" class="lightbox-button">
+				<img src="/assets/icons/arrow.svg" alt="Next image"/>
+				</button>
+				<button id="close-lightbox" class="lightbox-button" >
+				<img src="/assets/icons/close.svg" alt="Close dialog"/>
+				</button>
+			</div>
+		</main>
+		<div id="contact_modal"  role="dialog" aria-hidden="false">
 			<div class="modal">
 				<header>
-          <div class="part1">
-            <h1>Contactez-moi</h1>
-            <div class="modal-name"></div>
-          </div>          
-         
-        </header>
-        <form name="formulaire" id="formulaire" action="photographer.html" method="get" >
+					<div class="part1">
+						<h1>Contactez-moi</h1>
+						<div class="modal-name"></div>
+					</div>
+				</header>
+				<form name="formulaire" id="formulaire" action="#" method="get" >
 					<div>
-						<label>Prénom</label>
-            <input  class="text-control" type="text"  id="Prenom"  name="Prenom" aria-required=true aria-labelledby="First name" /><br>
-            <span class="hidden" id="PrenomNameError" ></span>
+						<label >Prénom</label>
+						<input  class="text-control" type="text"  id="Prenom"  name="Prenom" aria-required=true aria-label="First name" /><br>
+						<span class="hidden" id="PrenomNameError" ></span>
 					</div>
-          <div>
+					<div>
 						<label>nom</label>
-            <input  class="text-control" type="text"  id="Nom"  name="Nom"  aria-required=true aria-labelledby="Last name"  /><br>
-            <span class="hidden" id="NomNameError" ></span>
+						<input  class="text-control" type="text"  id="Nom"  name="Nom"  aria-required=true aria-label="Last name"  /><br>
+						<span class="hidden" id="NomNameError" ></span>
 					</div>
-          <div>
+					<div>
 						<label>email</label>
-            <input  class="text-control"  type="text" id="email"  name="email" aria-required=true aria-labelledby="Email" /><br>
-            <span class="hidden" id="emailError" ></span>
+						<input  class="text-control"  type="text" id="email"  name="email" aria-required=true aria-label="Email" /><br>
+						<span class="hidden" id="emailError" ></span>
 					</div>
-          <div>
+					<div>
 						<label>Message</label>
-						<input type="text" id="Message" aria-required=true aria-labelledby="Your message" />
+						<input type="text" id="Message" aria-required=true aria-label="Your message" />
 					</div>
-          <button id="contact_button" role="button" aria-labelledby="Send" >Envoyer</button>
+					<button id="contact_button" role="button" aria-label="Send" >Envoyer</button>
 				</form>
-        <img id="contact_modal_close-button" src="assets/icons/close.svg" role="button" aria-labelledby="Close Contact form" />
+				<img id="contact_modal_close-button" src="assets/icons/close.svg" tabindex="0" role="button" aria-label="Close Contact form" />
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js" type="module"></script>
-    <script src="/scripts/utils/contactForm.js" type="module"></script>
-    <script src="/scripts/templates/photographer.js" type="module"></script>
-    <script src="/scripts/templates/medias.js" type="module"></script>
-    
-  </body>
+		<script src="/scripts/pages/photographer.js" type="module"></script>
+		<script src="/scripts/utils/contactForm.js" type="module"></script>
+		<script src="/scripts/templates/photographer.js" type="module"></script>
+		<script src="/scripts/templates/medias.js" type="module"></script>
+	</body>
 </html>

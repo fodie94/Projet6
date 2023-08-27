@@ -1,4 +1,4 @@
-import { photographerTemplate } from "../templates/photographer.js"
+import { photographerTemplate } from "../templates/photographer.js";
 
 async function getJSON() {
     const res = await fetch('./data/photographers.json')
