@@ -99,7 +99,7 @@ export default function mediaTemplate(data, index) {
 		bas_article.appendChild(svg_article)
 		article.appendChild(bas_article)
 
-		vdo.addEventListener('click', (elem) => showLightbox(elem, index))
+		vdo.addEventListener('click', () => showLightbox(index))
 		link.addEventListener('keydown', function(event) {
 			if (event.key === "Enter") {
 				showLightbox(index)

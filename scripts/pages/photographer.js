@@ -9,7 +9,7 @@ let currentPictureIndex;
 let currentLikes = [];
 let totalLikes;
 let totalLikestest;
-let Name;
+
 
 
 async function getJSON() {
@@ -204,9 +204,9 @@ export async function showLightbox(id) { //2 -1 / +1
 	const photographermain = document.querySelector(".photograph-main");
 
 	// Reconstituer le chemin vers l'image à partir du JSON
-	console.log(id)
+	
 	const image = arrayMedias[id].image
-
+	console.log(id)
 	const imagePath = `/assets/SamplePhotos/${image}` // '/assets/SamplePhotos/Fashion_Yellow_Beach.jpg'
 
 	const title = arrayMedias[id].title
@@ -217,14 +217,13 @@ export async function showLightbox(id) { //2 -1 / +1
 	const VideoPath = `/assets/SamplePhotos/${video}`
 	lightboxContent.innerHTML = ""
 
-	if (arrayMedias[id].hasOwnProperty("image")) {
+	if ( arrayMedias[id].hasOwnProperty("image")) {
 		const lightboxImage = document.createElement('img')
 		lightboxImage.setAttribute("src", imagePath)
 		lightboxImage.setAttribute("alt", title)
 		lightboxContent.appendChild(lightboxImage)
 		lightboxNameDOM.innerText = title;
-	} else
-	if (arrayMedias[id].hasOwnProperty("video")) {
+	} else if (arrayMedias[id].hasOwnProperty("video")) {
 		const lightboxVideo = document.createElement('video')
 		lightboxVideo.setAttribute("src", VideoPath)
 		lightboxVideo.setAttribute('controls', true)
@@ -245,7 +244,8 @@ function handleShowNext() {
 
 	const lightboxContent = document.getElementById('lightbox-content')
 	const lightboxNameDOM = document.getElementById('lightbox-title');
-	// console.log(currentPictureIndex)
+	console.log(currentPictureIndex)
+	console.log(arrayMedias.length)
 	lightboxContent.innerHTML = ""
 	currentPictureIndex += 1
 
@@ -332,24 +332,91 @@ async function init() {
 init()
 
 
+
 // formulaire
 
-
 const modalbg = document.querySelector("#contact_modal");
-document.getElementById("formulaire").addEventListener("submit", function(e) {
-	e.preventDefault();
 
-
-	const Prenom = document.getElementById("Prenom");
+const Prenom = document.getElementById("Prenom");
 	const Nom = document.getElementById("Nom");
 	const email = document.getElementById("email");
 	const message = document.getElementById("Message");
 
+
+
+const PrenomNameError = document.getElementById("PrenomNameError");
+const NomNameError = document.getElementById("NomNameError");
+const emailError = document.getElementById("emailError");
+const messageError = document.getElementById("messageError");
+//let error = false;
+
+
+document.getElementById("formulaire").addEventListener("submit", function (e) {
+   let error = false;
+   e.preventDefault();
+
+   //check nom//
+   if (!Nom.value) {
+      NomNameError.innerText = "Veuillez renseigner votre nom";
+      NomNameError.classList.remove('hidden');
+      error = true;
+   } else if (Nom.value.length < 2) {
+      NomNameError.innerText = "Votre nom doit contenir au moins 2 caractères";
+      NomNameError.classList.remove('hidden');
+      error = true;
+   } else {
+      NomNameError.classList.add('hidden');
+   }
+
+   //check prenom//
+   if (!Prenom.value) {
+      PrenomNameError.innerText = "Veuillez renseigner votre prenom";
+      PrenomNameError.classList.remove('hidden');
+      error = true;
+   } else if (Prenom.value.length < 2) {
+      PrenomNameError.innerText = "Votre prenom doit contenir au moins 2 caractères";
+      PrenomNameError.classList.remove('hidden');
+      error = true;
+   } else {
+      PrenomNameError.classList.add('hidden');
+   }
+
+	//check message//
+	if (!message.value) {
+	messageError.innerText = "Veuillez mettre un message ";
+	messageError.classList.remove('hidden');
+	error = true;
+	} else if (message.value.length < 5) {
+	messageError.innerText = "Votre message doit contenir au moins 5 caractères";
+	messageError.classList.remove('hidden');
+	error = true;
+	} else {
+	messageError.classList.add('hidden');
+	}
+
+   //check email//
+   const mailFormat =
+      new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/);
+   if (!email.value) {
+      emailError.innerText = "Veuillez renseigner votre email";
+      emailError.classList.remove('hidden');
+      error = true;
+   } else if (!email.value.match(mailFormat)) {
+      emailError.innerText = "Veuillez saisir une adresse email valide.";
+      emailError.classList.remove('hidden');
+      error = true;
+   } else {
+      emailError.classList.add('hidden');
+   }
+   if (!error) {
+      modalbg.style.display = "none";
+   }
+
+   
 	console.log("prenom:" + Prenom.value)
 	console.log("Nom:" + Nom.value)
 	console.log("email:" + email.value)
 	console.log("message:" + message.value)
 
-	modalbg.style.display = "none";
-
+	
 });
